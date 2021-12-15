@@ -1,4 +1,7 @@
-# Assignment 5 - Huffman Coding
+# DISCLAIMER
+This repo a school project for <strong> cse13s </strong> and all current students should not look at the source code.
+
+# Huffman Coding
 The decode and encode programs aim to decode and/or encode any file type, ideally to reduce the size of the file. The
 encode program will work for any file, but the decode program will only work with files that were encoded with a
 specific magic number.
