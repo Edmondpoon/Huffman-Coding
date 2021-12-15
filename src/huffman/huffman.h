@@ -1,8 +1,8 @@
 #pragma once
 
-#include "node.h"
-#include "code.h"
-#include "defines.h"
+#include "../utils/node.h"
+#include "../utils/code.h"
+#include "../defines.h"
 #include <stdint.h>
 
 Node *build_tree(uint64_t hist[static ALPHABET]);

@@ -1,9 +1,5 @@
-#include "defines.h"
 #include "code.h"
-#include "io.h"
 #include <fcntl.h>
-#include <stdbool.h>
-#include <stdint.h>
 #include <stdio.h>
 
 //

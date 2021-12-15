@@ -1,11 +1,7 @@
-#include "node.h"
-#include "stack.h"
-#include "io.h"
-#include "pq.h"
-#include "code.h"
-#include "defines.h"
-#include <stdint.h>
-#include <stdio.h>
+#include "huffman.h"
+#include "../utils/stack.h"
+#include "../io/io.h"
+#include "../utils/pq.h"
 
 static uint16_t tree_size = 0;
 

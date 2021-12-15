@@ -1,7 +1,4 @@
-#include "code.h"
 #include "io.h"
-#include <stdbool.h>
-#include <stdint.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>

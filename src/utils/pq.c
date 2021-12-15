@@ -1,7 +1,4 @@
-#include "node.h"
 #include "pq.h"
-#include <stdbool.h>
-#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 

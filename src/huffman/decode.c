@@ -1,12 +1,8 @@
-#include "defines.h"
 #include "huffman.h"
-#include "io.h"
-#include "node.h"
-#include "header.h"
+#include "../io/io.h"
+#include "../header.h"
 #include <unistd.h>
 #include <fcntl.h>
-#include <inttypes.h>
-#include <stdbool.h>
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>

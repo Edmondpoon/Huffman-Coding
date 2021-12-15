@@ -1,8 +1,14 @@
 CC = clang
 CFLAGS = -Wall -Wpedantic -Werror -Wextra
-OBJS = io.o node.o huffman.o pq.o code.o stack.o
-ENCODE = encode.o
-DECODE = decode.o
+
+IO = ./src/io/
+HUFF = ./src/huffman/
+UTILS = ./src/utils/
+
+ENCODE = $(HUFF)encode.o
+DECODE = $(HUFF)decode.o
+OBJS = $(IO)io.o $(HUFF)huffman.o $(UTILS)code.o $(UTILS)pq.o $(UTILS)stack.o $(UTILS)node.o
+
 
 .PHONY: all clean format scan-build
 
@@ -19,9 +25,6 @@ decode: $(OBJS) $(DECODE)
 
 clean:
 	rm -f encode decode *.o
-
-format:
-	clang-format -i -style=file *.[ch]
 
 scan-build: clean
 	scan-build --use-cc=$(CC) make	

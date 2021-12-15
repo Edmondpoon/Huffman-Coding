@@ -1,6 +1,6 @@
 #pragma once
 
-#include "defines.h"
+#include "../defines.h"
 #include <stdbool.h>
 #include <stdint.h>
 
