@@ -13,15 +13,9 @@ struct PriorityQueue {
 };
 
 //
-// pq_create aims to dynamically allocate memory for a priority queue, set the top of the queue to 0, set the capacity to the
-// given parameter, and dynamically allocate memory to store the nodes.
+// Initializes a priority queue.
 //
-// pq_create takes 1 argument: capacity. The argument capacity represents the max number of nodes that can be stored
-//in the queue.
-//
-// pq_create returns the dynamically allocated priority queue pointer.
-//
-// Note that this function is based on the ideas given by Professor Long in the assignment documentation.
+// capacity: the capacity of the priority queue
 //
 PriorityQueue *pq_create(uint32_t capacity) {
     PriorityQueue *queue = (PriorityQueue *) malloc(sizeof(PriorityQueue));
@@ -38,13 +32,9 @@ PriorityQueue *pq_create(uint32_t capacity) {
 }
 
 //
-// pq_delete aims to free the priority queue and the memory representing the nodes in the queue.
+// Frees the priority queue and the memory representing the nodes in the queue.
 //
-// pq_delete takes 1 argument: q. The argument q represents a pointer to a priority queue pointer.
-//
-// pq_delete returns nothing/void.
-//
-// Note that this function is based on the ideas given by Professor Long in the assignment documentation.
+// q: the priority queue to free
 //
 void pq_delete(PriorityQueue **q) {
     if (*q && (*q)->nodes) {
@@ -70,39 +60,28 @@ bool pq_empty(PriorityQueue *q) {
 }
 
 //
-// pq_full aims to return whether the priority queue is full or not.
+// Returns whether the priority queue is full or not.
 //
-// pq_full takes 1 argument: q. The argument q is a pointer to a priority queue that we are checking.
-//
-// pq_full returns true or false depending on whether the priority queue is full or not.
-//
-// Note that this function is based on the ideas given by Professor Long in the assignment documentation.
+// q: the priority queue to check
 //
 bool pq_full(PriorityQueue *q) {
     return q->head == q->capacity;
 }
 
 //
-// pq_size aims to return the current size of the priority queue (how many elements).
+// Returns the current size of the priority queue (how many elements).
 //
-// pq_size takes 1 argument: s. The argument q is a pointer to a priority queue that we are checking.
-//
-// pq_size returns the number of bytes in the given priority queue pointer.
-//
-// Note that this function is based on the ideas given by Professor Long in the assignment documentation.
+// q: the priority queue to check
 //
 uint32_t pq_size(PriorityQueue *q) {
     return q->head;
 }
 
 //
-// enqueue aims to add a node to the given queue and put it in the correct position in the heap/queue.
-//
-// enqueue takes 2 arguments: q and n. Q represents the queue to remove from and n represents the node to enqueue.
-//
-// enqueue returns whether it was able to enqueue a node or not.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// Adds a node to the given queue and put it in the correct position in the heap/queue.
+// 
+// q: the priority queue to add the node to
+// n: the node to add
 //
 bool enqueue(PriorityQueue *q, Node *n) {
     if (pq_full(q)) {
@@ -124,13 +103,10 @@ bool enqueue(PriorityQueue *q, Node *n) {
 }
 
 //
-// dequeue aims to remove the node that had the highest priority from the queue and fix the queue.
+// Removes the node that had the highest priority from the queue and fix the queue.
 //
-// dequeue takes 2 arguments: q and n. Q represents the queue to remove from and n represents the dequeued node.
-//
-// dequeue returns whether it was able to dequeue a node or not.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// q: the priority queue to dequeue from
+// n: the address to store the dequeued node into
 //
 bool dequeue(PriorityQueue *q, Node **n) {
     if (pq_empty(q)) {
@@ -143,11 +119,9 @@ bool dequeue(PriorityQueue *q, Node **n) {
 }
 
 //
-// pq_print aims to print the current nodes of a given queue.
+// Prints the current nodes of a given priority queue.
 //
-// pq_print takes 1 argument: q. The argument q represents the priority queue to check.
-//
-// pq_print returns nothing/void.
+// q: the priority queue to print
 //
 void pq_print(PriorityQueue *q) {
     for (uint32_t father = 0; father < q->head; father++) {
@@ -158,13 +132,10 @@ void pq_print(PriorityQueue *q) {
 }
 
 //
-// swap aims to swap two nodes.
+// Swap two nodes.
 //
-// swap takes 2 arguments: node1 and node2. Node1 and node2 represent the nodes to swap.
-//
-// swap returns nothing/void.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// node1: the first node to swap
+// node2: the second node to swap
 //
 void swap(Node *node1, Node *node2) {
     Node temp = *node1;
@@ -174,13 +145,11 @@ void swap(Node *node1, Node *node2) {
 }
 
 //
-// min_child aims to aim to identify the smaller child node using the idea that the child nodes of a parent node are in
-// the 2kth and (2k + 1)th indices.
+// Identifies the smaller child node using the idea that the child nodes of a parent node are in the 2kth and (2k + 1)th indices.
 //
-// min_child takes 3 arguments: nodes, first, and last. First and last represent the first and last indices of the heap
-// array. Additionally, nodes represents the nodes array that holds the pointers to the nodes.
-//
-// returns an unsigned 64-bit integer that represents the index of the smaller child node
+// nodes: an array of nodes
+// first: the first index of the array
+// last: the last index of the array
 //
 uint64_t min_child(Node **nodes, uint32_t first, uint32_t last) {
     // Calculates the indices of the left and right child nodes
@@ -193,12 +162,11 @@ uint64_t min_child(Node **nodes, uint32_t first, uint32_t last) {
 }
 
 //
-// fix_heap aims to order the array in such a way that it fits the idea of a min heap.
+// Orders the array in such a way that it fits the idea of a min heap.
 //
-// fix_heap takes 3 arguments: nodes, first, and last. First and last represent the first and last indices of the heap
-// array. Additionally, nodes represents the nodes array that holds the pointers to the nodes.
-//
-// fix_heap returns nothing/void
+// nodes: an array of nodes
+// first: the first index of the array
+// last: the last index of the array
 //
 void fix_heap(Node **nodes, uint32_t first, uint32_t last) {
     bool found = false;

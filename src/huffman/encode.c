@@ -19,17 +19,7 @@ void encode_file(int64_t *files, uint8_t *buffer, Code *table);
 void help_message(char *, int64_t files[3]);
 bool check_optarg(char *optarg, int64_t files[3]);
 
-//
-// main contains the logic that allows the parses through the flags/input and outputs an encoded file.
-//
-// main takes 2 arguments: argc and argv. argc represents the total number of command line arguments. argv represents
-// every argument other than teh file name/executable.
-//
-// main returns either 1 or 0 depending if there were any errors that occurred while running.
-//
-// The function below (the encode function) is based on the ideas and instructions given in the assignment
-// documentation by Professor Long.
-//
+
 int main(int argc, char **argv) {
     int8_t opt = 0;
     bool stats = false;
@@ -137,11 +127,9 @@ void encode_file(int64_t *files, uint8_t *buffer, Code *table) {
 }
 
 //
-// close_files simply closes file descriptors.
+// Closes file descriptors.
 //
-// close_files takes 1 argument: files. Files is an array of file descriptors to free.
-//
-// close_files returns nothing/void.
+// files: an array of file descriptors
 //
 void close_files(int64_t *files) {
     if (files[INFILE] != STDIN_FILENO) {
@@ -157,11 +145,7 @@ void close_files(int64_t *files) {
 }
 
 //
-// help_message simply prints out the help message that describes how to use the program
-//
-// Returns nothing
-//
-// help_message takes no arguments
+// Prints out the help message that describes how to use the program
 //
 void help_message(char *error, int64_t files[3]) {
     if (*error != '\0') {
@@ -182,11 +166,10 @@ void help_message(char *error, int64_t files[3]) {
 }
 
 //
-// check_optarg aims to ensure a flag that needs an argument has an argument.
+// Ensure a flag that needs an argument has an argument.
 //
-// This function takes 1 arguments: optarg. Optarg represents the argument to check.
-//
-// This function returns whether there was an argument or not.
+// optarg: represents the input for the flag
+// files: an array of file descriptors
 //
 bool check_optarg(char *optarg, int64_t files[3]) {
     if (!optarg) {

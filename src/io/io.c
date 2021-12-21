@@ -9,14 +9,11 @@ static uint8_t code_buffer[BLOCK] = { 0 };
 static int32_t code_index = 0;
 
 //
-// read_bytes aims to read a certain number of bytes from a given file / file descriptor.
+// Reads a certain number of bytes from a given file / file descriptor.
 //
-// read_bytes takes 3 arguments: infile, buf, and nbytes. Infile represents a file descriptor to read from while buf
-// represents the buffer to store the read bytes into. Lastly, nbytes represents the number of bytes to read.
-//
-// read_bytes returns the number of bytes read.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// infile: the file to read the bytes from
+// buf: an array to store the read bytes into
+// nbytes: the number of bytes to attempt to read 
 //
 int read_bytes(int infile, uint8_t *buf, int nbytes) {
     int32_t curr_read = 0;
@@ -33,14 +30,11 @@ int read_bytes(int infile, uint8_t *buf, int nbytes) {
 }
 
 //
-// write_bytes aims to write a certain number of bytes into a given file / file descriptor.
+// Writes a certain number of bytes in to a given file / file descriptor.
 //
-// write_bytes takes 3 arguments: outfile, buf, and nbytes. Outfile represents a file descriptor to write into while buf
-// represents the buffer that holds the bytes to write. Lastly, nbytes represents the number of bytes to write.
-//
-// write_bytes returns the number of bytes written.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// outfile: the file to write the bytes in to
+// buf: an array of the bytes to write
+// nbytes: the number of bytes to attempt to write
 //
 int write_bytes(int outfile, uint8_t *buf, int nbytes) {
     int32_t curr_written = 0;
@@ -57,14 +51,10 @@ int write_bytes(int outfile, uint8_t *buf, int nbytes) {
 }
 
 //
-// read_bit aims to read a bit from a given file / file descriptor.
+// Reads a bit from a given file / file descriptor.
 //
-// read_bit takes 2 arguments: infile and bit. Infile represents a file descriptor to read from while bit represents the
-// bit we read.
-//
-// read_bit returns whether there are any more bits to read or not.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// infile: the file to read the bit from
+// bit: the address to store the read bit into
 //
 bool read_bit(int infile, uint8_t *bit) {
     static uint8_t buffer[BLOCK];
@@ -83,14 +73,10 @@ bool read_bit(int infile, uint8_t *bit) {
 }
 
 //
-// write_code aims to write out the bits present in a given Code into an outfile.
+// Writes out the bits present in a given Code into an outfile.
 //
-// write_code takes 2 arguments: infile and c. Infile represents a file descriptor to write into while c represents the
-// Code to take the bits from.
-//
-// write_code returns nothing/void.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// outfile: the file to write the codes in to
+// c: the code to write 
 //
 void write_code(int outfile, Code *c) {
     // Write full code
@@ -109,13 +95,9 @@ void write_code(int outfile, Code *c) {
 }
 
 //
-// flush_code aims to write out the leftover buffered bits into an outfile.
+// Writes out the leftover buffered bits into an outfile.
 //
-// flush_code takes 1 arguments: outfile. Outfile represents a file descriptor to write into.
-//
-// flush_code returns nothing/void.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// outfile: the file to write the leftover bits in to
 //
 void flush_codes(int outfile) {
     // Zero rest of the byte if we are not at the end of the byte

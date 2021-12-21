@@ -6,14 +6,9 @@
 static uint16_t tree_size = 0;
 
 //
-// build_tree aims to build a Huffman tree based off a given histogram.
+// Builds a Huffman tree based off a given histogram.
 //
-// build_tree takes 1 argument: hist. The argument hist represents the histogram that contains the frequency of each
-// symbol that appears in the file.
-//
-// build_tree returns the root of the Huffman tree.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// hist: histogram representing the characters in the input data
 //
 Node *build_tree(uint64_t hist[static ALPHABET]) {
     PriorityQueue *queue = pq_create(ALPHABET);
@@ -40,14 +35,10 @@ Node *build_tree(uint64_t hist[static ALPHABET]) {
 }
 
 //
-// build_codes aims to build the codes for each symbol in the file.
+// Builds the codes for each symbol in the file.
 //
-// build_codes takes 2 arguments: root and table. The argument root represents the root of the Huffman tree while table
-// represents an array that should hold the Codes for each symbol.
-//
-// build_codes returns nothing/void.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// root: root of the huffman tree
+// table: an array of codes for each possible character
 //
 void build_codes(Node *root, Code table[static ALPHABET]) {
     static Code code;
@@ -74,14 +65,10 @@ void build_codes(Node *root, Code table[static ALPHABET]) {
 }
 
 //
-// dump_tree aims to write out the tree dump of the Huffman tree.
+// Writes out the tree dump of the Huffman tree.
 //
-// dump_tree takes 2 arguments: outfile and root. The argument root represents the root of the Huffman tree while
-// outfile represents the file to write to.
-//
-// dump_tree returns nothing/void.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// outfile: the file to write the tree dump to
+// root: the root of the huffman tree
 //
 void dump_tree(int outfile, Node *root) {
     static uint8_t dump[MAX_TREE_SIZE];
@@ -107,14 +94,10 @@ void dump_tree(int outfile, Node *root) {
 }
 
 //
-// rebuild_tree aims to create a Huffman tree given a tree dump.
+// Creates a Huffman tree given a tree dump.
 //
-// rebuild_tree takes 2 arguments: nbytes and tree. The argument nbytes represents the number of bytes that comprise of
-// the tree dump and tree represent the tree dump.
-//
-// rebuild_tree returns the root of the rebuilt Huffman tree.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// nbytes: the number of bytes that is needed for the entire huffman tree
+// tree: an array of the tree dump
 //
 Node *rebuild_tree(uint16_t nbytes, uint8_t tree[static nbytes]) {
     Stack *stack = stack_create(nbytes);
@@ -137,14 +120,9 @@ Node *rebuild_tree(uint16_t nbytes, uint8_t tree[static nbytes]) {
 }
 
 //
-// delete_tree aims to free all the memory that was used to create the Huffman tree.
+// Frees all the memory that was used to create the Huffman tree via postorder traversal.
 //
-// rebuild_tree takes 1 argument: root. The argument root is a pointer to a pointer to a node, which represents
-// the root of the Huffman tree.
-//
-// rebuild_tree returns nothing/void.
-//
-// Note that this function is based on and build off of the given ideas by Professor Long in the assignment documentation.
+// root: the root node of the huffman tree
 //
 void delete_tree(Node **root) {
     if (*root) {
