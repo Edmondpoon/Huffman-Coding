@@ -98,8 +98,8 @@ int main(int argc, char **argv) {
 
     // Stats print
     if (stats) {
-        fprintf(stderr, "Uncompressed file size: %ld bytes\n", bytes_read / 2);
-        fprintf(stderr, "Compressed file size: %ld bytes\n", bytes_written);
+        fprintf(stderr, "Uncompressed file size: %" PRIu64 " bytes\n", bytes_read / 2);
+        fprintf(stderr, "Compressed file size: %" PRIu64 " bytes\n", bytes_written);
         fprintf(
             stderr, "Space saving: %.2lf%%\n", 100 * (1 - (bytes_written / (bytes_read / 2.0))));
     }
@@ -142,6 +142,7 @@ void close_files(int64_t *files) {
         close(files[TEMP]);
         remove("/tmp/read");
     }
+    return;
 }
 
 //

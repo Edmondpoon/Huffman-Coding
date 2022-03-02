@@ -8,11 +8,9 @@ struct Stack {
     Node **items;
 };
 
-//
 // Initializes a stack.
 //
 // capacity: the max capacity of the stack
-//
 Stack *stack_create(uint32_t capacity) {
     Stack *s = (Stack *) malloc(sizeof(Stack));
     if (s) {
@@ -27,11 +25,9 @@ Stack *stack_create(uint32_t capacity) {
     return s;
 }
 
-//
 // Frees the stack and the memory representing the items in the stack.
 //
 // s: the stack to free
-//
 void stack_delete(Stack **s) {
     if (*s && (*s)->items) {
         free((*s)->items);
@@ -41,39 +37,31 @@ void stack_delete(Stack **s) {
     return;
 }
 
-//
 // Returns whether the stack is empty or not.
 //
 // s: the stack to check
-//
 bool stack_empty(Stack *s) {
     return s->top == 0;
 }
 
-//
 // Returns whether the stack is full or not.
 //
 // s: the stack to check
-//
 bool stack_full(Stack *s) {
     return s->top == s->capacity;
 }
 
-//
 // Returns the current size of the stack (how many elements).
 //
 // s: the stack to check
-//
 uint32_t stack_size(Stack *s) {
     return s->top;
 }
 
-//
 // Pushes a node into the stack.
 //
 // s: the stack to push the node into
 // n: the node to push
-//
 bool stack_push(Stack *s, Node *n) {
     // Checks if the stack is already full
     if (stack_full(s)) {
@@ -83,12 +71,10 @@ bool stack_push(Stack *s, Node *n) {
     return true;
 }
 
-//
 // Pops a node from the stack.
 //
 // s: the stack to pop a node from
 // n: the address to store the popped node into
-//
 bool stack_pop(Stack *s, Node **n) {
     // Checks if the stack is empty
     if (stack_empty(s)) {
@@ -98,12 +84,10 @@ bool stack_pop(Stack *s, Node **n) {
     return true;
 }
 
-//
 // Prints the current size of the stack.
 //
 // s: the stack to print
-//
 void stack_print(Stack *s) {
-    printf("%d", stack_size(s));
+    printf("%" PRIu32, stack_size(s));
     return;
 }

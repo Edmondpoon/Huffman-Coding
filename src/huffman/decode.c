@@ -17,7 +17,6 @@ enum Paths { LEFT, RIGHT };
 void help_message(void);
 void close_files(int64_t *files);
 
-
 int main(int argc, char **argv) {
     int8_t opt = 0;
     bool stats = false;
@@ -75,7 +74,7 @@ int main(int argc, char **argv) {
         help_message();
         return 1;
     }
-
+    // Private file 
     if (files[OUTFILE] != STDOUT_FILENO) {
         fchmod(files[OUTFILE], header.permissions);
     }
@@ -116,8 +115,8 @@ int main(int argc, char **argv) {
     write_bytes(files[OUTFILE], buffer, (symbols % BLOCK));
     // Prints stats
     if (stats) {
-        fprintf(stderr, "Compressed file size: %ld bytes\n", bytes_read);
-        fprintf(stderr, "Uncompressed file size: %ld bytes\n", bytes_written);
+        fprintf(stderr, "Compressed file size: %" PRIu64 " bytes\n", bytes_read);
+        fprintf(stderr, "Uncompressed file size: %" PRIu64 " bytes\n", bytes_written);
         fprintf(
             stderr, "Space saving: %.2lf%%\n", 100 * (1 - (bytes_read / (bytes_written * 1.0))));
     }
@@ -138,6 +137,7 @@ void close_files(int64_t *files) {
     if (files[OUTFILE] != STDOUT_FILENO) {
         close(files[OUTFILE]);
     }
+    return;
 }
 
 //
